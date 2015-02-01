@@ -1,0 +1,9 @@
+{
+  "name": "trip.shikakun.com",
+  "devDependencies": {
+    "grunt": "*",
+    "grunt-contrib-compass": "*",
+    "grunt-contrib-connect": "*",
+    "grunt-contrib-watch": "*"
+  }
+}

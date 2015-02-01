@@ -1,0 +1,210 @@
+<html prefix="og: http://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8">
+    <title>{block:PostSummary}{PostSummary} · {/block:PostSummary}{block:TagPage}{Tag} · {/block:TagPage}{block:SearchPage}{SearchQuery} · {/block:SearchPage}{Title}</title>
+    {block:Description}
+      <meta name="description" content="{MetaDescription}">
+    {/block:Description}
+    <meta name="viewport" content="width=device-width">
+    <link rel="shortcut icon" href="{Favicon}">
+    <link rel="alternate" type="application/rss+xml" href="{RSS}">
+
+    <link href="http://localhost:8000/theme/css/stylesheet.css" rel="stylesheet" type="text/css" media="screen" charset="utf-8">
+
+    <style>
+      {CustomCSS}
+    </style>
+  </head>
+  <body class="{block:IndexPage}page-index{/block:IndexPage}{block:PermalinkPage}page-permalink page-{PostID}{/block:PermalinkPage}">
+
+    {block:PermalinkPage}
+      {block:IfEnableLikeButton}
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+      {/block:IfEnableLikeButton}
+    {/block:PermalinkPage}
+
+    <div class="container">
+
+      <header class="header" role="banner">
+        <h1 class="blog-title">
+          <a href="/">{Title}</a>
+        </h1>
+      </header>
+
+      <div class="main autopagerize_page_element" role="main">
+
+        {block:Posts}
+          <article class="post {TagsAsClasses} {PostType}">
+
+            <!-- post: テキスト -->
+            {block:Text}
+              <header class="entry-header">
+                {block:Title}
+                  <h1 class="entry-title"><a href="{Permalink}">{Title}</a></h1>
+                {/block:Title}
+              </header>
+              <div class="entry-content">
+                {Body}
+              </div>
+            {/block:Text}
+
+            <!-- post: 画像 -->
+            {block:Photo}
+              <div class="entry-content">
+                {LinkOpenTag}
+                  <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}">
+                {LinkCloseTag}
+                {block:Caption}
+                  <div class="caption">
+                    {Caption}
+                  </div>
+                {/block:Caption}
+              </div>
+            {/block:Photo}
+
+            <!-- post: フォトセット -->
+            {block:Photoset}
+              <div class="entry-content">
+                {Photoset-700}
+                {block:Caption}
+                  <div class="caption">
+                    {Caption}
+                  </div>
+                {/block:Caption}
+              </div>
+            {/block:Photoset}
+
+            <!-- post: 引用 -->
+            {block:Quote}
+              <div class="entry-content {Length}">
+                <blockquote>“{Quote}”</blockquote>
+                {block:Source}
+                  <p class="quote-source">
+                    {Source}
+                  </p>
+                {/block:Source}
+              </div>
+            {/block:Quote}
+
+            <!-- post: リンク -->
+            {block:Link}
+              <header class="entry-header">
+                <h1 class="entry-title">
+                  <a href="{URL}" class="link-url" {Target}>{Name}</a>
+                </h1>
+              </header>
+              <div class="entry-content">
+                  {block:Description}
+                    <div class="link-description">{Description}</div>
+                  {/block:Description}
+              </div>
+            {/block:Link}
+
+            <!-- post: チャット -->
+            {block:Chat}
+              <div class="entry-content">
+                {block:Title}
+                  <h1 class="entry-title"><a href="{Permalink}">{Title}</a></h1>
+                {/block:Title}
+                <ul class="ul-chat">
+                  {block:Lines}
+                    <li class="{Alt} user_{UserNumber}">
+                  {block:Label}
+                    <span class="label">{Label}</span>
+                  {/block:Label}
+                  {Line}
+                    </li>
+                  {/block:Lines}
+                </ul>
+              </div>
+            {/block:Chat}
+
+            <!-- post: ビデオ -->
+            {block:Video}
+              <div class="entry-content video-iframe">
+                {Video-700}
+                {block:Caption}
+                  <div class="caption">
+                    {Caption}
+                  </div>
+                {/block:Caption}
+              </div>
+            {/block:Video}
+
+            <!-- post: オーディオ -->
+            {block:Audio}
+              <div class="entry-content">
+                {AudioPlayerBlack}
+                {block:Caption}
+                  <div class="caption">
+                    {Caption}
+                  </div>
+                {/block:Caption}
+              </div>
+            {/block:Audio}
+
+            <!-- post: Answer -->
+            {block:Answer}
+              <div class="entry-content">
+                <div class="question bubble">
+                  {Question}
+                </div>
+                <div class="asker-group">
+                  <img src="{AskerPortraitURL-24}" width="24" height="24"> {Asker}
+                </div>
+                <div class="answer cont">{Answer}</div>
+              </div>
+            {/block:Answer}
+
+            <footer class="entry-footer">
+              <div class="entry-meta-footer">
+                <div class="meta meta-footer">
+                  <span class="meta-elements timeago">
+                    <a href="{Permalink}">{TimeAgo}</a>
+                  </span>
+                  {block:NoteCount}
+                    <span class="meta-elements notecount">
+                      <a href="{Permalink}">{NoteCount} Notes</a>
+                    </span>
+                  {/block:NoteCount}
+                  {block:HasTags}
+                    <span class="meta-elements hastags">
+                      {block:Tags}
+                        <a href="{TagURL}">#{Tag}</a>
+                      {/block:Tags}
+                    </span>
+                  {/block:HasTags}
+                </div>
+              </div>
+            </footer>
+
+          </article>
+        {/block:Posts}
+
+        {block:Pagination}
+          <div class="pagenation pagenation-index">
+            {block:PreviousPage}
+              <a href="{PreviousPage}">Prev</a>
+            {/block:PreviousPage}
+            {block:JumpPagination length="5"}
+              {block:CurrentPage}<span class="current-page">{PageNumber}</span>{/block:CurrentPage}
+              {block:JumpPage}<a class="jump-page" href="{URL}">{PageNumber}</a>{/block:JumpPage}
+            {/block:JumpPagination}
+            {block:NextPage}
+              <a href="{NextPage}" class="next" rel="next">Next</a>
+            {/block:NextPage}
+          </div>
+        {/block:Pagination}
+
+      </div>
+    </div>
+
+  </body>
+</html>
