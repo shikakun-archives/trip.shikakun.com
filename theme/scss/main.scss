@@ -4,3 +4,21 @@
 
 // vendor
 @import 'vendor/normalize';
+
+body {
+  font-family: sans-serif;
+}
+
+.post {
+  margin: 0;
+  &.text {
+    padding: 2em 4em;
+  }
+}
+
+img {
+  width: 100%;
+  max-width: 1840px;
+  margin: 0 auto;
+  display: block;
+}

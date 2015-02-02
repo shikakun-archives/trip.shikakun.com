@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="{Favicon}">
     <link rel="alternate" type="application/rss+xml" href="{RSS}">
 
-    <link href="http://localhost:8000/theme/css/stylesheet.css" rel="stylesheet" type="text/css" media="screen" charset="utf-8">
+    <link href="http://localhost:8000/theme/css/main.css" rel="stylesheet" type="text/css" media="screen" charset="utf-8">
 
     <style>
       {CustomCSS}
@@ -162,28 +162,6 @@
                 <div class="answer cont">{Answer}</div>
               </div>
             {/block:Answer}
-
-            <footer class="entry-footer">
-              <div class="entry-meta-footer">
-                <div class="meta meta-footer">
-                  <span class="meta-elements timeago">
-                    <a href="{Permalink}">{TimeAgo}</a>
-                  </span>
-                  {block:NoteCount}
-                    <span class="meta-elements notecount">
-                      <a href="{Permalink}">{NoteCount} Notes</a>
-                    </span>
-                  {/block:NoteCount}
-                  {block:HasTags}
-                    <span class="meta-elements hastags">
-                      {block:Tags}
-                        <a href="{TagURL}">#{Tag}</a>
-                      {/block:Tags}
-                    </span>
-                  {/block:HasTags}
-                </div>
-              </div>
-            </footer>
 
           </article>
         {/block:Posts}
